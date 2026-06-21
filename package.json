@@ -1,0 +1,44 @@
+{
+  "name": "@mambalabsdev/mcp-company-identity-resolver",
+  "version": "1.0.0",
+  "description": "MCP server for the Mamba Labs Company Identity Resolver actor on Apify. Resolve any combination of company name, domain, or LinkedIn URL into one canonical identity tuple with per-field and overall confidence scores, returned as flat Clay-ready JSON.",
+  "type": "module",
+  "bin": {
+    "mcp-company-identity-resolver": "./build/index.js"
+  },
+  "scripts": {
+    "build": "tsc && chmod +x build/index.js",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "company-identity",
+    "entity-resolution",
+    "dedup",
+    "company-matching",
+    "domain-resolution",
+    "confidence-score",
+    "apify",
+    "clay"
+  ],
+  "author": "Mamba Labs <labs@mambamindsetgrowth.com>",
+  "license": "MIT",
+  "homepage": "https://apify.com/mambalabs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mambalabsdev/mcp-company-identity-resolver"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^5.6.0"
+  },
+  "mcpName": "com.mambabuilt/mcp-company-identity-resolver"
+}
