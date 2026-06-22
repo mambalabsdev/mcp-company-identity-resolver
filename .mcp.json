@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "mamba-company-social-presence-mapper": {
+    "mamba-company-identity-resolver": {
       "command": "npx",
       "args": [
         "-y",
