@@ -4,6 +4,17 @@
 
 An MCP server that exposes the Mamba Labs Company Identity Resolver as a single tool. Install one package and give your MCP client a way to turn any combination of company name, domain, or LinkedIn URL into one canonical company identity tuple with confidence scores, wrapping the Mamba Labs actor on Apify and returning Clay-ready flat JSON.
 
+## What's Inside
+
+- [What it does](#what-it-does)
+- [Quick start](#quick-start)
+- [Prerequisites](#prerequisites)
+- [Example prompts](#example-prompts)
+- [Tool and inputs](#tool-and-inputs)
+- [Full actor documentation](#full-actor-documentation)
+- [Mamba Labs GTM Suite](#mamba-labs-gtm-suite)
+- [License](#license)
+
 ## What it does
 
 This server gives an AI client one tool:
