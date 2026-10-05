@@ -1,7 +1,7 @@
 {
   "manifest_version": "0.3",
   "name": "mcp-company-identity-resolver",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCP server that resolves any combination of company name, domain, or LinkedIn URL into one canonical identity tuple with per-field and overall confidence scores, returned as flat Clay-ready JSON.",
   "author": {
     "name": "Mamba Labs"
