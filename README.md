@@ -11,6 +11,7 @@ An MCP server that exposes the Mamba Labs Company Identity Resolver as a single 
 - [Prerequisites](#prerequisites)
 - [Example prompts](#example-prompts)
 - [Tool and inputs](#tool-and-inputs)
+- [Pricing](#pricing)
 - [Full actor documentation](#full-actor-documentation)
 - [Mamba Labs GTM Suite](#mamba-labs-gtm-suite)
 - [License](#license)
@@ -64,15 +65,33 @@ Get your token at https://console.apify.com/account/integrations, paste it in, a
 - `company_name` (string): company name, e.g. Stripe. Provide at least one of `company_name`, `domain`, or `linkedin_url`.
 - `domain` (string): bare company domain, e.g. stripe.com. The strongest canonical key when provided.
 - `linkedin_url` (string): LinkedIn company URL (https://www.linkedin.com/company/stripe) or bare slug (stripe).
+- `company_names` (array of strings): a list of company names resolved in one run, one row per company.
+- `domains` (array of strings): a list of bare domains resolved in one run, one row per domain.
+- `batchSize` (integer): how many companies from the lists are resolved at once.
 - `skipCache` (boolean): force a fresh resolution and ignore the 7 day result cache.
 
-The output is one flat row: the echoed inputs, the canonical `name`, `domain`, and `linkedin_url`, the overall `confidence_score`, the `match_method` (`exact_domain`, `search_resolved`, `linkedin_pattern`, `jsonld`, `conflict`, or `unresolved`), the per-field `domain_confidence`, `linkedin_confidence`, and `name_confidence`, and a `resolved` boolean.
+Provide at least one of `company_name`, `domain`, `linkedin_url`, `company_names`, or `domains`.
+
+The output is one flat row: the echoed inputs, the canonical `name`, `domain`, and `linkedin_url`, the overall `confidence_score`, the `match_method` (`exact_domain`, `search_resolved`, `linkedin_pattern`, `jsonld`, `conflict`, or `unresolved`), the per-field `domain_confidence`, `linkedin_confidence`, and `name_confidence`, a `resolved` boolean, and the run fields `degraded`, `degradation_reason`, and `run_date`. A list input returns one such row per company.
+
+The tool starts the actor run and polls it to a finished status, so a long batch is not cut off at 300 seconds. A run that does not succeed comes back as an error with its run ID and status.
+
+## Pricing
+
+Company Identity Resolver is pay per event on Apify.
+
+| Event | Price | Fires when |
+| --- | ---: | --- |
+| `apify-actor-start` | $0.00005 | Once per run, on start, one event per GB of memory (minimum one). Apify's start event. |
+| `apify-default-dataset-item` | $0.007 (FREE tier), down to $0.00595 on GOLD and above | Once per row written to the dataset. |
 
 ## Full actor documentation
 
-For the complete input and output reference, pricing, and run history, see the Company Identity Resolver actor on the Apify Store (canonical immutable Actor ID URL):
+For the complete input and output reference, pricing, and run history, see the Company Identity Resolver actor on the Apify Store:
 
-https://apify.com/mambalabs/lr8fTRAmZCBZmuwwh
+https://apify.com/mambalabs/company-identity-resolver
+
+The wrapper calls the actor by its immutable ID `lr8fTRAmZCBZmuwwh`, so a Store rename never breaks it.
 
 ---
 
