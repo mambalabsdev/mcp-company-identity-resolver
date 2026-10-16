@@ -214,12 +214,13 @@ server.registerTool(
       "Resolve any combination of company name, domain, or LinkedIn URL into one canonical company identity: the name, primary domain, and LinkedIn company URL, each with a 0-100 confidence score plus an overall score and a match method. Cross-checks the inputs you give it, resolves the ones you do not, and flags conflicts (a domain and a LinkedIn slug that disagree) instead of merging them. Login-free and public-data only. Takes one company or a list (company_names or domains), one row per company. Returns flat Clay-ready JSON. A run that does not succeed is returned as an error with its run ID. Read-only; requires an APIFY_TOKEN and consumes Apify credits per call.",
     annotations: {
       title: "Resolve Company Identity",
-      readOnlyHint: true,
+      readOnlyHint: false,
       destructiveHint: false,
       idempotentHint: true,
       openWorldHint: true,
     },
     inputSchema: {
+      max_charge_usd: z.number().min(0).optional().describe("Optional. The run stops before any charge that would take this run's total past this amount in USD, and every row already charged is kept. Leave it empty to rely only on the maximum cost per run set in Apify, which the actor also honors."),
       company_name: z
         .string()
         .optional()
@@ -253,7 +254,7 @@ server.registerTool(
         .describe("Force a fresh resolution and ignore the 7 day result cache."),
     },
   },
-  async ({ company_name, domain, linkedin_url, company_names, domains, batchSize, skipCache }) => {
+  async ({ company_name, domain, linkedin_url, company_names, domains, batchSize, skipCache, max_charge_usd }) => {
     if (
       (company_name === undefined || company_name === "") &&
       (domain === undefined || domain === "") &&
@@ -270,6 +271,7 @@ server.registerTool(
       "lr8fTRAmZCBZmuwwh",
       "Company Identity Resolver",
       compact({
+        max_charge_usd,
         company_name,
         domain,
         linkedin_url,
