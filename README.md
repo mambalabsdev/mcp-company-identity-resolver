@@ -84,6 +84,7 @@ Company Identity Resolver is pay per event on Apify.
 | --- | ---: | --- |
 | `apify-actor-start` | $0.00005 | Once per run, on start, one event per GB of memory (minimum one). Apify's start event. |
 | `apify-default-dataset-item` | $0.007 (FREE tier), down to $0.00595 on GOLD and above | Once per row written to the dataset. |
+| `max_charge_usd` | number | Optional cost cap in USD for this run. The actor stops before an item that could take its charges past this amount. |
 
 ## Full actor documentation
 

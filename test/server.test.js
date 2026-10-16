@@ -17,7 +17,7 @@ const ACTOR_REQUIRED = [];
 // Hidden schema fields are excluded by rule: source_tag is the landing page
 // attribution tag the actor sets for itself, not something a caller supplies.
 // serperApiKey is a bring your own key field kept off the tool on purpose.
-const ACTOR_INPUTS = ["batchSize", "company_name", "company_names", "domain", "domains", "linkedin_url", "skipCache"];
+const ACTOR_INPUTS = ["max_charge_usd","batchSize", "company_name", "company_names", "domain", "domains", "linkedin_url", "skipCache"];
 
 // Speak MCP over stdio to the built server and return the tools/list result.
 // No APIFY_TOKEN is set, on purpose: a client must see capabilities before it
